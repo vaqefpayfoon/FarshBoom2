@@ -1,0 +1,226 @@
+<div class="card">
+  <div class="card-body">
+    <div *ngIf="saveState != '0'">
+      <ng-container *ngIf="saveState == '1'; else elseTemplate">
+        <alert type="success">
+          {{ successMessage }}
+        </alert>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <alert type="danger">
+          {{ errorMessage }}
+        </alert>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-xlg-6">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <!-- <h2 class="text-center text-primary">ثبت نام</h2> -->
+      <hr>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">تامین کننده</label>
+        <select formControlName="userId" class="form-control col-sm-5">
+          <option *ngFor="let user of users" [ngValue]="user.id" class="form-control" placeholder="تامین کننده">
+            {{ user.username }}</option>
+        </select>
+      <span *ngIf="!registerForm.get('userId').valid && registerForm.get('userId').touched"
+        class="help-block"></span>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">اندازه</label>
+        <select formControlName="sizeId" class="form-control col-sm-5">
+          <option *ngFor="let size of sizes" [ngValue]="size.id" class="form-control">
+            {{ size.title }}</option>
+      </select>
+      <span *ngIf="!registerForm.get('sizeId').valid && registerForm.get('sizeId').touched"
+        class="help-block"></span>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">نوع</label>
+        <select formControlName="typeId" class="form-control col-sm-5">
+          <option *ngFor="let type of types" [ngValue]="type.id" class="form-control">
+            {{ type.title }}</option>
+      </select>
+      <span *ngIf="!registerForm.get('typeId').valid && registerForm.get('typeId').touched"
+        class="help-block"></span>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">گونه</label>
+        <select formControlName="brandId" class="form-control col-sm-5">
+          <option *ngFor="let brand of brands" [ngValue]="brand.id" class="form-control">
+            {{ brand.title }}</option>
+      </select>
+      <span *ngIf="!registerForm.get('brandId').valid && registerForm.get('brandId').touched"
+        class="help-block"></span>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">نقشه</label>
+        <select formControlName="planId" class="form-control col-sm-5">
+          <option *ngFor="let plan of plans" [ngValue]="plan.id" class="form-control">
+            {{ plan.title }}</option>
+      </select>
+      <span *ngIf="!registerForm.get('planId').valid && registerForm.get('planId').touched"
+        class="help-block"></span>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">رنگ</label>
+        <select formControlName="colorId" class="form-control col-sm-5">
+          <option *ngFor="let color of colors" [ngValue]="color.id" class="form-control">
+            {{ color.title }}</option>
+      </select>
+      <span *ngIf="!registerForm.get('colorId').valid && registerForm.get('colorId').touched"
+        class="help-block"></span>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">رنگ حاشیه</label>
+        <select formControlName="colorId2" class="form-control col-sm-5">
+          <option *ngFor="let color of colors" [ngValue]="color.id" class="form-control">
+            {{ color.title }}</option>
+      </select>
+      <span *ngIf="!registerForm.get('colorId2').valid && registerForm.get('colorId2').touched"
+        class="help-block"></span>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">ارزیابی</label>
+        <select formControlName="assessmentId" class="form-control col-sm-5">
+          <option *ngFor="let assessment of assessments" [ngValue]="assessment.id" class="form-control">
+            {{ assessment.title }}</option>
+        </select>
+      <span *ngIf="!registerForm.get('assessmentId').valid && registerForm.get('assessmentId').touched"
+        class="help-block"></span>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">پرز</label>
+        <select formControlName="porzId" class="form-control col-sm-5">
+          <option *ngFor="let porz of porzs" [ngValue]="porz.id" class="form-control">
+            {{ porz.title }}</option>
+      </select>
+      <span *ngIf="!registerForm.get('porzId').valid && registerForm.get('porzId').touched"
+        class="help-block"></span>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">چله</label>
+        <select formControlName="cheleId" class="form-control col-sm-5">
+          <option *ngFor="let chele of cheles" [ngValue]="chele.id" class="form-control">
+            {{ chele.title }}</option>
+      </select>
+      <span *ngIf="!registerForm.get('cheleId').valid && registerForm.get('cheleId').touched"
+        class="help-block"></span>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">رج شمار</label>
+        <select formControlName="rajId" class="form-control col-sm-5">
+          <option *ngFor="let raj of rajs" [ngValue]="raj.id" class="form-control">
+            {{ raj.title }}</option>
+      </select>
+      <span *ngIf="!registerForm.get('rajId').valid && registerForm.get('rajId').touched"
+        class="help-block"></span>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">کد تامین کننده</label>
+        <input type="text" [ngClass]="{'is-invalid': registerForm.get('providerCode').errors && registerForm.get('providerCode').touched}"
+        class="form-control col-sm-5" formControlName="providerCode" placeholder="کد تامین کننده">
+        <div class="invalid-feedback">کد تامین کننده را وارد کنید</div>
+      </div>
+      <br>
+        <div class="form-row">
+          <label class="col-sm-2 col-form-label">طول</label>
+          <input type="text" class="form-control col-sm-5" formControlName="lenght" placeholder="طول">
+        </div>
+        <br>
+        <div class="form-row">
+          <label class="col-sm-2 col-form-label">عرض</label>
+          <input type="text" class="form-control col-sm-5" formControlName="width" placeholder="عرض">
+        </div>
+        <br>
+
+        <div class="form-row">
+          <label class="col-sm-2 col-form-label">شرح</label>
+          <input type="text" class="form-control col-sm-5" formControlName="title" placeholder="شرح">
+        </div>
+        <br>
+
+      <div class="form-group text-center">
+        <button class="btn btn-success" [disabled]="!registerForm.valid" type="submit">ثبت</button>
+        <button class="btn btn-default" type="button" (click)="cancel()">لغو</button>
+      </div>
+
+    </form>
+  </div>
+  <div style="padding-right: 8%;" *ngIf="_id != -1">
+
+    <div>
+
+        <h3>افزودن تصویر</h3>
+
+        <div ng2FileDrop
+             [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+             (fileOver)="fileOverBase($event)"
+             [uploader]="uploader"
+             class="card bg-faded p-3 text-center mb-3 my-drop-zone">
+             <i class="fa fa-upload fa-3x"></i>
+            تصویر را به اینجا بکشید
+        </div>
+
+        <!-- Multiple
+        <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/> -->
+
+
+        <input type="file" ng2FileSelect [uploader]="uploader" />
+    </div>
+
+    <div style="margin-bottom: 40px" *ngIf="uploader?.queue?.length">
+
+        <p>طول: {{ uploader?.queue?.length }}</p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th width="50%">نام</th>
+                <th>اندازه</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of uploader.queue">
+                <td><strong>{{ item?.file?.name }}</strong></td>
+                <td *ngIf="uploader.options.isHTML5" nowrap>{{ item?.file?.size/500/500 | number:'.2' }} MB</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <div>
+                <div class="progress mb-4">
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success btn-s"
+                    (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                <span class="fa fa-upload"></span> بارگذاری
+            </button>
+            <button type="button" class="btn btn-warning btn-s"
+                    (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                <span class="fa fa-ban"></span> انصراف
+            </button>
+        </div>
+
+    </div>
+
+  </div>
+</div>
+<div class="row" style="direction: ltr;">
+  <img src="{{photo}}" alt="" height="300px" width="500px">
+</div>

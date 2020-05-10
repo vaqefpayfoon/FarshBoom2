@@ -1,0 +1,13 @@
+// Override Boostrap variables
+@import "../variables";
+@import "~bootstrap/scss/mixins";
+@import "~@coreui/coreui/scss/variables";
+
+@font-face {
+  font-family: 'iransans';
+  src: url('../../assets/IRANSans-Light-web.ttf') format('woff');
+}
+$font-family-base :'iransans', sans-serif;
+body {
+  font-family: 'sansiran';
+}

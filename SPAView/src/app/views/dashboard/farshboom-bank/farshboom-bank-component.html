@@ -1,0 +1,105 @@
+<div class="row">
+
+  <div class="col-lg-12 col-xlg-6">
+    <div class="card">
+      <div class="card-body">
+        <div *ngIf="saveState != '0'">
+          <ng-container *ngIf="saveState == '1'; else elseTemplate">
+            <alert type="success">
+              {{ successMessage }}
+            </alert>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <alert type="danger">
+              {{ errorMessage }}
+            </alert>
+          </ng-template>
+        </div>
+
+      </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-subtitle"></h6>
+              <form class="form-inline" #form="ngForm" (ngSubmit)="loadGoods()" novalidate>
+                <div class="row">
+                  <div class="form-group px-4">
+                    <label for="userId">پرز :</label>
+                       <select [(ngModel)]="userParams.porzId" class="form-control" name="userId">
+                        <option *ngFor="let porz of porzs" [ngValue]="porz.id" class="form-control col-sm-4">
+                          {{ porz.title }}</option>
+                      </select>
+                  </div>
+                  <div class="form-group px-4">
+                    <label for="typeId">نوع :</label>
+                       <select [(ngModel)]="userParams.typeId" class="form-control" name="typeId">
+                        <option *ngFor="let type of types" [ngValue]="type.id" class="form-control col-sm-4">
+                          {{ type.title }}</option>
+                      </select>
+                  </div>
+                  <div class="form-group px-4">
+                    <label for="sizeId">سایز :</label>
+                    <select [(ngModel)]="userParams.sizeId" class="form-control" name="sizeId">
+                      <option *ngFor="let size of sizes" [ngValue]="size.id" class="form-control col-sm-4">
+                        {{ size.title }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group px-4">
+                    <label for="brandId">گونه :</label>
+                    <select [(ngModel)]="userParams.brandId" class="form-control" name="brandId">
+                      <option *ngFor="let brand of brands" [ngValue]="brand.id" class="form-control col-sm-4">
+                        {{ brand.title }}</option>
+                    </select>
+                  </div>
+                </div>
+                <br/><br/><br/>
+                <div class="row">
+                  <div class="form-group px-4">
+                    <label for="userId">رنگ :</label>
+                       <select [(ngModel)]="userParams.colorId" class="form-control" name="userId">
+                        <option *ngFor="let color of colors" [ngValue]="color.id" class="form-control col-sm-4">
+                          {{ color.title }}</option>
+                      </select>
+                  </div>
+                  <div class="form-group px-4">
+                    <button type="submit" class="btn btn-primary" style="margin-left:10px">جستجو</button>
+                    <button type="button" class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">
+                        بازیابی
+                    </button>
+                  </div>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>
+  <div class="row">
+    <div *ngFor="let good of goods" class="col-md-3 col-sm-6">
+      <div class="card mb-4">
+        <div class="card-img-wrapper">
+          <img class="card-img-top" src="{{good.imageUrl}}">
+          <ul class="list-inline member-icons animate text-center">
+            <li class="list-inline-item"><button class="btn btn-primary" (click)="sendLike(good)"><i class="fa fa-heart"></i></button></li>
+          </ul>
+        </div>
+        <div class="card-body p-1">
+          <h6 class="card-title text-center mb-1"><i class="fa fa-inventory"></i>
+            {{good.type}}, {{good.size}}
+          </h6>
+          <p class="card-text text-muted text-center">{{good.color}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div *ngIf="pagination != undefined"lass="d-flex justify-content-center">
+        <pagination
+            [boundaryLinks]="true"
+            [totalItems]="pagination.totalItems"
+            [(ngModel)]="pagination.currentPage"
+            [itemsPerPage]="pagination.itemsPerPage"
+            (pageChanged)="pageChanged($event)"
+          previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+        </pagination>
+      </div>
+    </div>
+</div>
+</div>

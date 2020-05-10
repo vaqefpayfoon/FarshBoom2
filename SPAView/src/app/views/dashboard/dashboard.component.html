@@ -1,0 +1,179 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          فرش های منتخب فرش بوم
+        </div>
+        <div class="card-body">
+          <carousel [interval]="myInterval" [noWrap]="noWrapSlides" [(activeSlide)]="activeSlideIndex">
+            <slide *ngFor="let slide of dbslides; let index=index">
+              <img [src]="slide.imageUrl" alt="image slide" style="display: block; width: 100%;">
+              <div class="carousel-caption">
+                <h4>{{ slide.title }}</h4>
+                <p>{{slide.passage}}</p>
+              </div>
+            </slide>
+          </carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-info">
+        <div class="card-body pb-0">
+          <div class="text-value">{{keyvalues[0].title}} </div>
+          <div>تعداد فالورهای فرش بوم</div>
+        </div>
+        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+          <canvas baseChart class="chart"
+          [datasets]="lineChart2Data"
+          [labels]="lineChart2Labels"
+          [options]="lineChart2Options"
+          [colors]="lineChart2Colours"
+          [legend]="lineChart2Legend"
+          [chartType]="lineChart2Type"></canvas>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-primary">
+        <div class="card-body pb-0">
+          <div class="text-value">{{stringModel[1].id}}</div>
+          <div>تولید کنندگان فرش بوم</div>
+        </div>
+        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+          <canvas baseChart class="chart"
+                  [datasets]="lineChart1Data"
+                  [labels]="lineChart1Labels"
+                  [options]="lineChart1Options"
+                  [colors]="lineChart1Colours"
+                  [legend]="lineChart1Legend"
+                  [chartType]="lineChart1Type"></canvas>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-warning">
+        <div class="card-body pb-0">
+          <div class="text-value">{{stringModel[0].id}}</div>
+          <div>تعداد نمایشگاه های فرش بوم</div>
+        </div>
+        <div class="chart-wrapper mt-3" style="height:70px;">
+          <canvas baseChart class="chart"
+          [datasets]="lineChart3Data"
+          [labels]="lineChart3Labels"
+          [options]="lineChart3Options"
+          [colors]="lineChart3Colours"
+          [legend]="lineChart3Legend"
+          [chartType]="lineChart3Type"></canvas>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-danger">
+        <div class="card-body pb-0">
+          <div class="text-value">{{keyvalues[1].title}}</div>
+          <div>تعداد بازدیدکنندگان نمایشگاه</div>
+        </div>
+        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+          <canvas baseChart class="chart"
+          [datasets]="barChart1Data"
+          [labels]="barChart1Labels"
+          [options]="barChart1Options"
+          [colors]="barChart1Colours"
+          [legend]="barChart1Legend"
+          [chartType]="barChart1Type"></canvas>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-5">
+          <h4 class="card-title mb-0">تنوع فرش های نمایشگاه های اخیر</h4>
+          <div class="small text-muted">فرش بوم</div>
+        </div><!--/.col-->
+      </div><!--/.row-->
+      <div class="chart-wrapper" style="height:300px;margin-top:40px;">
+        <canvas baseChart class="chart"
+        [datasets]="mainChartDatas"
+        [labels]="mainChartLabels"
+        [options]="DataOptions"
+        [colors]="lineChart2Colours"
+        [legend]="lineChart2Legend"
+        [chartType]="lineChart2Type"></canvas>
+      </div>
+    </div>
+    <!-- <div class="card-footer">
+      <div class="d-inline-block" *ngFor="let item of mainChartLabels">
+        <div class="bg-primary">{{item}}</div>
+      </div>
+    </div> -->
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-header">
+          گونه های پربازدید فرش بوم
+          <div class="card-header-actions">
+            <a href="http://www.chartjs.org">
+              <small class="text-muted"></small>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-wrapper">
+            <canvas baseChart class="chart"
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card-header">
+        درصد گونه ها
+      </div>
+        <div class="card">
+          <table class="table">
+            <tr>
+              <td><span style="color:#e83e8c;text-align: center;">{{pieChartLabels[0]}}</span></td>
+              <td><span style="color:#e83e8c;text-align: center;">{{pieChartData[0] + "%"}}</span></td>
+
+              <td><span style="color:#20a8d8;text-align: center;">{{pieChartLabels[1]}}</span></td>
+              <td><span style="color:#20a8d8;text-align: center;">{{pieChartData[1] + "%"}}</span></td>
+            </tr>
+            <tr>
+              <td><span style="color:#ffc107">{{pieChartLabels[2]}}</span></td>
+              <td><span style="color:#ffc107">{{pieChartData[2] + "%"}}</span></td>
+
+              <td><span style="color:#c8ced3">{{pieChartLabels[3]}}</span></td>
+              <td><span style="color:#c8ced3">{{pieChartData[3] + "%"}}</span></td>
+            </tr>
+            <tr>
+              <td><span style="color:#ffb22b">{{pieChartLabels[4]}}</span></td>
+              <td><span style="color:#ffb22b">{{pieChartData[4] + "%"}}</span></td>
+
+              <td><span style="color:#63c2de">{{pieChartLabels[5]}}</span></td>
+              <td><span style="color:#63c2de">{{pieChartData[5] + "%"}}</span></td>
+            </tr>
+            <tr>
+              <td><span style="color:#c8ced3">{{pieChartLabels[6]}}</span></td>
+              <td><span style="color:#c8ced3">{{pieChartData[6] + "%"}}</span></td>
+            </tr>
+            <tr>
+              <td><span style="color:#f86c6b">{{pieChartLabels[7]}}</span></td>
+              <td><span style="color:#f86c6b">{{pieChartData[7] + "%"}}</span></td>
+            </tr>
+          </table>
+        </div>
+    </div>
+  </div>
+
+</div>

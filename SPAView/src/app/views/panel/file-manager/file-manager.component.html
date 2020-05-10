@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-body">
+    <div *ngIf="saveState != '0'">
+      <ng-container *ngIf="saveState == '1'; else elseTemplate">
+        <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-xlg-6">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <!-- <h2 class="text-center text-primary">ثبت نام</h2> -->
+
+      <hr>
+      <div class="form-group text-center">
+        <button class="btn btn-success" [disabled]="!registerForm.valid" type="submit">ثبت</button>
+        <button class="btn btn-default" type="button" (click)="cancel()">لغو</button>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">صفحه :</label>
+        <select formControlName="value" [ngClass]="{'is-invalid': registerForm.get('value').errors && registerForm.get('value').touched}" class="form-control col-sm-5">
+            <option *ngFor="let value of dropDown"  [ngValue]="value.value" class="form-control">{{value.title}}</option>
+            <div class="invalid-feedback"> صفحه را وارد نمایید</div>
+        </select>
+      </div>
+      <br>
+      <div class="form-row">
+        <label class="col-sm-2 col-form-label">متن :</label>
+        <input type="text" [ngClass]="{'is-invalid': registerForm.get('title').errors && registerForm.get('title').touched}"
+        class="form-control col-sm-5" formControlName="title" placeholder="موضوع">
+        <div class="invalid-feedback">متن را وارد نمایید</div>
+      </div>
+
+    </form>
+  </div>
+
+
+</div>
+
+

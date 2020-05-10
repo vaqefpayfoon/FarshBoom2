@@ -1,0 +1,17 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+@font-face {
+  font-family: 'iransans';
+  src: url('../assets/IRANSans-Light-web.woff') format('woff');
+}
+$font-family-base: 'iransans';
+
+body {
+  font-family: $font-family-base;
+}

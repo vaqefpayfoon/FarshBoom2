@@ -1,0 +1,110 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div *ngIf="saveState != '0'">
+      <ng-container *ngIf="saveState == '1'; else elseTemplate">
+        <alert type="success">
+          {{ successMessage }}
+        </alert>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <alert type="danger">
+          {{ errorMessage }}
+        </alert>
+      </ng-template>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <strong style="font-size: 16px;">کد فرش بوم {{good.farshboomCode}}</strong>
+        </div>
+        <div class="card-body">
+          <div class="card-img-wrapper">
+            <img class="card-img-top" src="{{good.imageUrl}}">
+          </div>
+        </div>
+        <div class="card-footer">
+          <strong style="font-size: 16px;">رنگ فرش : {{good.color}} - {{good.color2}}</strong>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <!-- Nav tabs -->
+      <tabset>
+        <tab heading="مشخصات اصلی">
+          <table class="table" style="font-size: 16px;">
+            <tr>
+              <td style="background-color:#b1b5b8">اندازه</td>
+              <td>{{good.size}}</td>
+            </tr>
+            <tr>
+              <td style="background-color:#b1b5b8">نوع</td>
+              <td>{{good.type}}</td>
+            </tr>
+            <tr>
+              <td style="background-color:#b1b5b8">گونه</td>
+              <td>{{good.brand}}</td>
+            </tr>
+            <tr>
+              <td style="background-color:#b1b5b8">پرز</td>
+              <td>{{good.porz}}</td>
+            </tr>
+            <tr>
+              <td style="background-color:#b1b5b8">رنگ</td>
+              <td>{{good.color}}</td>
+            </tr>
+            <tr>
+              <td style="background-color:#b1b5b8">ابعاد</td>
+              <td>{{good.lenght}} * {{good.lenght}}</td>
+            </tr>
+          </table>
+          <div class="cart">
+            <div class="card-body">
+              <form  #loginForm="ngForm" (ngSubmit)="sendLike()">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-phone"></i></span>
+                  </div>
+                  <input type="number" class="form-control" type="number" name="title" required placeholder="تلفن برای دعوت به نمایشگاه" [(ngModel)]="model.title">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-pencil"></i></span>
+                  </div>
+                  <textarea class="form-control" type="text" name="passage" required placeholder="نظرات کاربران" required [(ngModel)]="model.passage" rows="4">
+                  </textarea>
+                </div>
+                <button *ngIf="loggedIn()" type="submit" class="btn btn-primary"><i class="icon-like"></i> ارسال نظر شما</button>
+              </form>
+            </div>
+          </div>
+        </tab>
+        <tab heading="مشخصات تکمیلی">
+          <table class="table" style="font-size: 16px;">
+            <tr>
+              <td style="background-color:#b1b5b8">چله</td>
+              <td>{{good.chele}}</td>
+            </tr>
+            <tr>
+              <td style="background-color:#b1b5b8">نقشه</td>
+              <td>{{good.plan}}</td>
+            </tr>
+            <tr>
+              <td style="background-color:#b1b5b8">ارزیابی</td>
+              <td>{{good.assessment}}</td>
+            </tr>
+            <tr>
+              <td style="background-color:#b1b5b8">رج</td>
+              <td>{{good.raj}}</td>
+            </tr>
+            <tr>
+              <td style="background-color:#b1b5b8">رنگ حاشیه</td>
+              <td>{{good.color2}}</td>
+            </tr>
+          </table>
+        </tab>
+      </tabset>
+    </div><!--/.col-->
+  </div>
+</div>
