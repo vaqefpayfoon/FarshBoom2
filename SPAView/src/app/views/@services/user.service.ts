@@ -56,7 +56,8 @@ export class UserService {
     let params = new HttpParams();
     params = params.append('key', key);
     params = params.append('field', field);
-    return this.http.get<User>(this.baseUrl + "/getUser", { observe: 'response', params }).pipe(map((response: any) => {
+    return this.http.get<User>(this.baseUrl + "/getUser", { observe: 'response', params,
+    headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')}) }).pipe(map((response: any) => {
       const createdUser = response.body;
       this.user = createdUser.userDto;
       return this.user;
@@ -64,7 +65,8 @@ export class UserService {
   }
   usernames: string[];
   getUsernames() {
-    return this.http.get<User>(this.baseUrl + "/getUsernames", { observe: 'response'}).pipe(map((response: any) => {
+    return this.http.get<User>(this.baseUrl + "/getUsernames", { observe: 'response',
+    headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')})}).pipe(map((response: any) => {
       const userName = response.body;
       this.usernames = userName;
       return this.usernames;
@@ -81,7 +83,8 @@ export class UserService {
   }
   userId: any;
   saveUser(model: User) {
-    return this.http.post(this.baseUrl + '/saveUser', model, {observe: 'response'}).pipe(
+    return this.http.post(this.baseUrl + '/saveUser', model, {observe: 'response',
+    headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')})}).pipe(
       map((response: any) => {
         const createdUser = response.body;
          this.userId = createdUser.id;
@@ -90,7 +93,8 @@ export class UserService {
   }
 
   updateUser(model: User) {
-    return this.http.post(this.baseUrl + '/updateUser', model, {observe: 'response'}).pipe(
+    return this.http.post(this.baseUrl + '/updateUser', model, {observe: 'response',
+    headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')})}).pipe(
       map((response: any) => {
         return response.body;
       })
@@ -99,7 +103,8 @@ export class UserService {
 
   deleteUser(id: number) {
     let name: StringModel = {id: id, name: ''};
-    return this.http.post(this.baseUrl + '/deleteUser', name, {observe: 'response'}).pipe(
+    return this.http.post(this.baseUrl + '/deleteUser', name, {observe: 'response',
+    headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')})}).pipe(
       map((response: any) => {
         return response.body;
       })

@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 
 namespace FarshBoom.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase

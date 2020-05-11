@@ -18,7 +18,7 @@ namespace FarshBoom.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class LikeController : ControllerBase
     {
         private IGenericRepository<Like> _repo;

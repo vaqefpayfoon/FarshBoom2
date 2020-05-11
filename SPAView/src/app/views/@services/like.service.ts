@@ -52,7 +52,8 @@ export class LikeService {
     let params = new HttpParams();
     params = params.append('key', key);
     params = params.append('field', field);
-    return this.http.get<Like>(this.baseUrl + "/getLike", { observe: 'response', params }).pipe(map((response: any) => {
+    return this.http.get<Like>(this.baseUrl + "/getLike", { observe: 'response', params,
+    headers: new HttpHeaders({'Authorization': 'Bearer ' + localStorage.getItem('token')}) }).pipe(map((response: any) => {
       const createdLike = response.body;
       this.like = createdLike.likeDto;
       return this.like;
