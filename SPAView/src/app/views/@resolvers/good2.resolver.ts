@@ -16,7 +16,7 @@ export class Good2Resolver implements Resolve<Good> {
     resolve(route: ActivatedRouteSnapshot): Observable<Good> | Promise<Good> | Good {
       if(route.params['id'] != -1) {
         return this.dashboardServie.getGood(route.params['id'], 'id').pipe(catchError(error => {
-          this.router.navigate(['/dashboard/error']);
+          this.router.navigate(['/dashboard/login']);
           return of(null);
       })
   );

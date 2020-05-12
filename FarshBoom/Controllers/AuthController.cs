@@ -8,6 +8,7 @@ using AutoMapper;
 using FarshBoom.Dtos;
 using FarshBoom.Generic;
 using FarshBoom.Models;
+using FarshBoom.Repositories.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -20,13 +21,15 @@ namespace FarshBoom.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _repo;
+        private readonly IGenericRepository<KeyValue> _repoKey;
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
-        public AuthController(IAuthRepository repo, IConfiguration config, IMapper mapper)
+        public AuthController(IAuthRepository repo, IConfiguration config, IMapper mapper, IGenericRepository<KeyValue> repoKey)
         {
             _mapper = mapper;
             _config = config;
             _repo = repo;
+            _repoKey = repoKey;
         }
         [AllowAnonymous]
         [HttpPost("register")]
@@ -51,6 +54,10 @@ namespace FarshBoom.Controllers
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
             var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
+
+            KeyValue item = await _repoKey.GetByIDAsync(4);
+            item.Value = (Convert.ToInt32(item.Value) + 1).ToString();
+            int res = await _repoKey.UpdateAsync(item);
 
             if (userFromRepo == null)
                 return Unauthorized();

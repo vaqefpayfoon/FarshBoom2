@@ -92,7 +92,7 @@ const routes: Routes = [
     },
     {
         path: 'dashboard',
-        resolve: {brands: BrandsResolver, projects: ProjectsResolver, slides: SlidesResolver},
+        resolve: {brands: BrandsResolver, projects: ProjectsResolver, slides: SlidesResolver, keyvalues: KeyValuesResolver},
         data: {
             title: '',
             urls: [

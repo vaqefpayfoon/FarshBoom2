@@ -31,6 +31,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { LikeManagmentComponent } from './like-managment/like-managment.component';
 import { LikesResolver } from '../@resolvers/likes.resolver';
+import { KeyValuesResolver } from '../@resolvers/keyvalues.resolver';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { LikesResolver } from '../@resolvers/likes.resolver';
     PagesResolver,
     PageContentsResolver,
     SlideResolver,
-    LikesResolver
+    LikesResolver,
+    KeyValuesResolver
   ]
 })
 export class PanelModule {}

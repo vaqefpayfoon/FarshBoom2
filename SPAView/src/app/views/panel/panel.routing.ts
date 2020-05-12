@@ -20,6 +20,7 @@ import { SlideResolver } from '../@resolvers/slide.resolver';
 import { FileManagerComponent } from './file-manager/file-manager.component';
 import { LikeManagmentComponent } from './like-managment/like-managment.component';
 import { LikesResolver } from '../@resolvers/likes.resolver';
+import { KeyValuesResolver } from '../@resolvers/keyvalues.resolver';
 
 export const PanelRoutes: Routes = [
 	{
@@ -145,6 +146,7 @@ export const PanelRoutes: Routes = [
       {
 		path: 'file-manager',
         component: FileManagerComponent,
+        resolve: {keyvalues: KeyValuesResolver},
         data: {
 					title: 'آمار',
 					urls: [

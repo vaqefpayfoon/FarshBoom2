@@ -15,7 +15,7 @@ export class LikeResolver implements Resolve<Like> {
     resolve(route: ActivatedRouteSnapshot): Observable<Like> | Promise<Like> | Like {
       if(route.params['id'] != -1) {
         return this.likeService.getLike(route.params['id'], 'id').pipe(catchError(error => {
-          this.router.navigate(['/dashboard/error']);
+          this.router.navigate(['/dashboard/login']);
           return of(null);
       })
   );

@@ -1,5 +1,15 @@
 <div class="card">
   <div class="card-body">
+    <table class="table">
+        <tr *ngFor="let item of keyvalues">
+            <td>{{item.title}}</td>
+            <td>{{item.value}}</td>
+        </tr>
+    </table>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
     <div *ngIf="saveState != '0'">
       <ng-container *ngIf="saveState == '1'; else elseTemplate">
         <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
@@ -32,7 +42,7 @@
       <div class="form-row">
         <label class="col-sm-2 col-form-label">متن :</label>
         <input type="text" [ngClass]="{'is-invalid': registerForm.get('title').errors && registerForm.get('title').touched}"
-        class="form-control col-sm-5" formControlName="title" placeholder="موضوع">
+        class="form-control col-sm-5" formControlName="title" placeholder="متن">
         <div class="invalid-feedback">متن را وارد نمایید</div>
       </div>
 

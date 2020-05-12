@@ -17,11 +17,14 @@ namespace FarshBoom.Controllers
 {    
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class DashboardController : ControllerBase
     {
         private IMapper _mapper;
-        public DashboardController(IMapper mapper)
+        private readonly IGenericRepository<KeyValue> _repoKey;
+        public DashboardController(IMapper mapper, IGenericRepository<KeyValue> repo)
         {
+            _repoKey = repo;
             _mapper = mapper;
         }
         [HttpGet("getBrnads")]
@@ -94,7 +97,7 @@ namespace FarshBoom.Controllers
         }
 
         [HttpGet("getProjects")]
-        public IActionResult GetProjects() 
+        public async Task<IActionResult> GetProjects() 
         {        
             string connectionString = "Data Source=185.88.152.127,1430;Initial Catalog=94_farsheboom ;User Id=94_vaq;Password=V@qef2512740;MultipleActiveResultSets=True;Max Pool Size=9000;persist security info=True;";
             SqlConnection cnn = new SqlConnection(connectionString);
@@ -104,7 +107,7 @@ namespace FarshBoom.Controllers
             command.Connection = cnn;
             command.CommandText = @"SELECT top(8) Count(header_srl) header, project_name, from_date FROM [94_farsheboom].[dbo].[Project_Goods_View] group by project_name, from_date order by from_date desc";
             SqlDataReader reader = command.ExecuteReader();
-            List<ProjectDto> lstProject = new List<ProjectDto>();
+            List<ProjectDto> lstProject = new List<ProjectDto>();           
             while (reader.Read())
             {
                 if(reader["header"] == null)
@@ -117,6 +120,11 @@ namespace FarshBoom.Controllers
             }
             cnn.Close();
             lstProject.Reverse();
+
+            KeyValue item = await _repoKey.GetByIDAsync(3);
+            item.Value = (Convert.ToInt32(item.Value.Trim()) + 1).ToString();
+            int res = await _repoKey.UpdateAsync(item);
+
             return Ok(lstProject);
         }
         [HttpGet("getAllGoods")]

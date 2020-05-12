@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { KeyValue } from '../../@models/keyvalue';
 import { KeyValueService } from '../../@services/keyvalue.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
 
@@ -19,13 +19,15 @@ export class FileManagerComponent implements OnInit {
   registerForm: FormGroup;
 
   constructor(private keyvalueService: KeyValueService, private router: Router,
-     private fb: FormBuilder) { }
+     private fb: FormBuilder, private route: ActivatedRoute) { }
      saveState: string = "0";
 
   _id: any;
-
+  keyvalues: KeyValue[];
   ngOnInit() {
-
+    this.route.data.subscribe((param: Params) => {
+      this.keyvalues = param["keyvalues"]
+    })
     this.createRegisterForm();
   }
 
