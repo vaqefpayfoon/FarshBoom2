@@ -36,6 +36,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -56,6 +57,7 @@ export function tokenGetter() {
     TabsModule.forRoot(),
     ChartsModule,
     HttpClientModule,
+    CollapseModule.forRoot(),
     JwtModule.forRoot({
      config: {
        tokenGetter: tokenGetter,

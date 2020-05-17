@@ -139,8 +139,12 @@ namespace FarshBoom.Controllers
                 where += "And ibt_srl = " + userParams.BrandId;
             if(userParams.ColorId != null)
                 where += "And color_srl = " + userParams.ColorId;
-            if(userParams.PorzId!= null)
+            if(userParams.PorzId != null)
                 where += "And porz_type = " + userParams.PorzId;
+            if(userParams.Length != null)
+                where += "And lenght = " + userParams.Length;
+            if(userParams.Weight != null)
+                where += "And widht = " + userParams.Weight;
 
             string connectionString = "Data Source=185.88.152.127,1430;Initial Catalog=94_farsheboom ;User Id=94_vaq;Password=V@qef2512740;MultipleActiveResultSets=True;Max Pool Size=9000;persist security info=True;";
             SqlConnection cnn = new SqlConnection(connectionString);

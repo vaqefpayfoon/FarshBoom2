@@ -79,6 +79,8 @@ export class FarshboomBankComponent implements OnInit {
   this.userParams.typeId = null;
   this.userParams.sizeId = null;
   this.userParams.brandId = null;
+  this.userParams.weight = null;
+  this.userParams.length = null;
   this.loadGoods();
 }
 

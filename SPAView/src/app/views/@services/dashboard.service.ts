@@ -57,6 +57,12 @@ export class DashboardService {
       if(userParams.brandId != null){
         params = params.append('brandId', userParams.brandId);
       }
+      if(userParams.length != null){
+        params = params.append('length', userParams.length);
+      }
+      if(userParams.weight != null){
+        params = params.append('weight', userParams.weight);
+      }
     }
     return this.http.get<Good[]>(this.baseUrl + "/getAllGoods", { observe: 'response', params})
     .pipe(
