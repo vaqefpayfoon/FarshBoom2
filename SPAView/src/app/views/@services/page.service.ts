@@ -43,7 +43,7 @@ export class PageService {
   }
 
   pageId: any;
-  savePage(model: Page) {
+  savePage(model: PageContent) {
     return this.http.post(this.baseUrl + '/savePageContent', model, {observe: 'response'}).pipe(
       map((response: any) => {
         const createdPage = response.body;
@@ -52,7 +52,7 @@ export class PageService {
     );
   }
 
-  updatePage(model: Page) {
+  updatePage(model: PageContent) {
     return this.http.post(this.baseUrl + '/updatePageContent', model, {observe: 'response'}).pipe(
       map((response: any) => {
         return response.body;

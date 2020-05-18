@@ -1,6 +1,7 @@
 export interface Page {
   id: number;
   title: string;
+  menuId: number;
 }
 
 export interface PageContent {
