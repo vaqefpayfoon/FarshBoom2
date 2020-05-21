@@ -42,7 +42,8 @@ namespace FarshBoom.Controllers
         public async Task<IActionResult> UpdatePageContent(PageContent model)
         {
             PageContent updatedPageContent = await _repo.GetByIDAsync(model.Id);
-            //_mapper.Map(goodForUpdateDto, updatedGood);
+            updatedPageContent.Title = model.Title;
+            updatedPageContent.Passage = model.Passage;
             var good = await _repo.UpdateAsync(updatedPageContent);
             if(good == -1)
                 throw new Exception($"Updating pageContent {model.Id} failed on save");
@@ -95,7 +96,7 @@ namespace FarshBoom.Controllers
             if(field.Equals("name"))
                 pageContents = _repo.GetAll().Where(woak => woak.Title.Equals(key));
             else
-                pageContents = _repo.GetAll().Where(woak => woak.PageId == Convert.ToInt32(key));
+                pageContents = _repo.GetAll().Where(woak => woak.Id == Convert.ToInt32(key));
             //GoodDto goodDto = _mapper.Map<GoodDto>(good);
             return Ok(new {pageContents = pageContents});
         }

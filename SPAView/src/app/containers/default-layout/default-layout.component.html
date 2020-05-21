@@ -14,7 +14,7 @@
           تنوع گونه
         </a>
         <div id="your-dropdown" class="dropdown-menu" aria-labelledby="link-dropdown" *dropdownMenu>
-          <div *ngFor="let item of menu1">
+          <div *ngFor="let item of pageContents1">
             <a class="dropdown-item" [routerLink]="[ '/dashboard/content', item.id]">{{item.title}}</a>
           </div>
         </div>
@@ -24,7 +24,7 @@
           ارزش اقتصادی
         </a>
         <div id="your-dropdown" class="dropdown-menu" aria-labelledby="link-dropdown" *dropdownMenu>
-          <div *ngFor="let item of menu2">
+          <div *ngFor="let item of pageContents2">
             <a class="dropdown-item" [routerLink]="[ '/dashboard/content', item.id]">{{item.title}}</a>
           </div>
         </div>
@@ -34,7 +34,7 @@
           شناسنامه معتبر
         </a>
         <div id="your-dropdown" class="dropdown-menu" aria-labelledby="link-dropdown" *dropdownMenu>
-          <div *ngFor="let item of menu3">
+          <div *ngFor="let item of pageContents3">
             <a class="dropdown-item" [routerLink]="[ '/dashboard/content', item.id]">{{item.title}}</a>
           </div>
         </div>
@@ -44,7 +44,7 @@
           اطلاعات فنی
         </a>
         <div id="your-dropdown" class="dropdown-menu" aria-labelledby="link-dropdown" *dropdownMenu>
-          <div *ngFor="let item of menu4">
+          <div *ngFor="let item of pageContents4">
             <a class="dropdown-item" [routerLink]="[ '/dashboard/content', item.id]">{{item.title}}</a>
           </div>
         </div>
@@ -54,7 +54,7 @@
           مشاوره دکوراسیون
         </a>
         <div id="your-dropdown" class="dropdown-menu" aria-labelledby="link-dropdown" *dropdownMenu>
-          <div *ngFor="let item of menu5">
+          <div *ngFor="let item of pageContents5">
             <a class="dropdown-item" [routerLink]="[ '/dashboard/content', item.id]">{{item.title}}</a>
           </div>
         </div>
@@ -64,7 +64,7 @@
           حمایت از قالیبافان
         </a>
         <div id="your-dropdown" class="dropdown-menu" aria-labelledby="link-dropdown" *dropdownMenu>
-          <div *ngFor="let item of menu6">
+          <div *ngFor="let item of pageContents6">
             <a class="dropdown-item" [routerLink]="[ '/dashboard/content', item.id]">{{item.title}}</a>
           </div>
         </div>
@@ -81,6 +81,7 @@
     <cui-breadcrumb>
       <li class="breadcrumb-menu d-md-down-none">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <a *ngIf="loggedIn()" class="btn" (click)="onLogout()"><i class="fa fa-sign-out"></i> &nbsp;خروج</a>
           <a *ngIf="!loggedIn()" class="btn" [routerLink]="['/dashboard/login']"><i class="icon-user"></i> &nbsp;ورود</a>
           <a *ngIf="!loggedIn()" class="btn" [routerLink]="['/dashboard/register']"><i class="icon-pencil"></i> &nbsp;ثبت نام</a>
         </div>

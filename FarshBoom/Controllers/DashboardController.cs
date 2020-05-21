@@ -146,6 +146,16 @@ namespace FarshBoom.Controllers
             if(userParams.Weight != null)
                 where += "And widht = " + userParams.Weight;
 
+            if(userParams.CheleId != null)
+                where += "And chele_type = " + userParams.CheleId;
+            if(userParams.PlanId != null)
+                where += "And city_srl = " + userParams.PlanId;
+            if(userParams.AssessmentId != null)
+                where += "And carpet_type = " + userParams.AssessmentId;
+            if(userParams.FromPrice != null && userParams.ToPrice != null)
+                where += "And sale_price BETWEEN " + userParams.FromPrice + " And " + userParams.ToPrice;
+            
+
             string connectionString = "Data Source=185.88.152.127,1430;Initial Catalog=94_farsheboom ;User Id=94_vaq;Password=V@qef2512740;MultipleActiveResultSets=True;Max Pool Size=9000;persist security info=True;";
             SqlConnection cnn = new SqlConnection(connectionString);
             if(cnn.State == ConnectionState.Closed)
@@ -153,7 +163,7 @@ namespace FarshBoom.Controllers
             SqlCommand command = new SqlCommand();
             command.Connection = cnn;
             // 
-            command.CommandText = @"SELECT Top(300) [srl], [porz_type] ,[chele_type] ,[carpet_type] ,[ibt_srl] ,[size_srl] ,[color_srl] ,[color_srl2], [raj_srl], [title_igd], [lenght] ,[widht] ,[code_igd] ,[provider_code] ,[brand_name], [size_title], [color_name], [porz_title], [carpet_title] FROM [94_farsheboom].[94_vaq].[FarshBoomSite] Where (sold = 0 or sold is null)" + where + " Order By srl Desc";
+            command.CommandText = @"SELECT Top(300) [srl], [porz_type] ,[chele_type] ,[carpet_type] ,[ibt_srl] ,[size_srl] ,[color_srl] ,[color_srl2], [raj_srl], [title_igd], [lenght] ,[widht] ,[code_igd] ,[provider_code] ,[brand_name], [size_title], [color_name], [porz_title], [carpet_title], [city_srl], [sale_price], [raj_title] FROM [94_farsheboom].[94_vaq].[FarshBoomSite] Where (sold = 0 or sold is null)" + where + " Order By srl Desc";
             SqlDataReader reader = command.ExecuteReader();
             List<GoodDto> lstGood = new List<GoodDto>();
             while (reader.Read())
@@ -171,6 +181,10 @@ namespace FarshBoom.Controllers
                 good.Color = reader["color_name"].ToString();
                 good.Porz = reader["porz_title"].ToString();
                 good.Type = reader["carpet_title"].ToString();
+
+                good.Chele = reader["chele_title"].ToString();
+                good.Plan = reader["plan_title"].ToString();
+                good.Raj = reader["raj_title"].ToString();
 
                 good.ImageUrl = reader["title_igd"].ToString();
                 good.ImageUrl = good.ImageUrl.Replace("../", "http://bank.farshboom.com/");
@@ -194,6 +208,10 @@ namespace FarshBoom.Controllers
                     good.Width = Convert.ToInt32(reader["widht"]);
                  if(reader["raj_srl"] != null && !Convert.IsDBNull(reader["raj_srl"]))
                      good.RajId = Convert.ToInt32(reader["raj_srl"]);
+                 if(reader["city_srl"] != null && !Convert.IsDBNull(reader["city_srl"]))
+                     good.RajId = Convert.ToInt32(reader["city_srl"]);
+                 if(reader["sale_price"] != null && !Convert.IsDBNull(reader["sale_price"]))
+                     good.SalePrice = Convert.ToInt32(reader["sale_price"]);
 
                 lstGood.Add(good);
             }

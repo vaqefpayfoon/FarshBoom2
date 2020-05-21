@@ -19,5 +19,11 @@ namespace FarshBoom.Helpers
         public int? PorzId { get; set; }
         public int? Length { get; set; }
         public int? Weight { get; set; }
+        public int? CheleId { get; set; }
+        public int? RajId { get; set; }
+        public int? PlanId { get; set; }
+        public int? AssessmentId { get; set; }
+        public double? FromPrice { get; set; }
+        public double? ToPrice { get; set; }
     }
 }

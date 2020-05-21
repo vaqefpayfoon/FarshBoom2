@@ -3,9 +3,10 @@ import { Pagination, PaginatedResult } from '../../@models/pagination';
 import { Good } from '../../@models/Good';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
-import { Size, Type, Brand, Color, Porz} from '../../@models/base';
+import { Size, Type, Brand, Color, Porz, Plan, Chele, Assessment, Raj} from '../../@models/base';
 import { BaseService } from '../../@services/base.service';
 import { DashboardService } from '../../@services/dashboard.service';
+import { User } from '../../@models/user';
 
 @Component({
   selector: 'app-farshboom-bank',
@@ -31,8 +32,12 @@ export class FarshboomBankComponent implements OnInit {
  sizes: Size[];
  types: Type[];
  brands: Brand[];
- porzs: Porz[];
+ plans: Plan[];
  colors: Color[];
+ porzs: Porz[];
+ cheles: Chele[];
+ assessments: Assessment[];
+ rajs: Raj[];
 
  successMessage: string = environment.successful;
  errorMessage: string = environment.error;
@@ -41,12 +46,16 @@ export class FarshboomBankComponent implements OnInit {
 
  ngOnInit() {
 
-   this.baseService.getSliderBase().subscribe((res) => {
+   this.baseService.getBase().subscribe((res) => {
     this.sizes = res.sizes;
     this.types = res.types;
     this.brands = res.brands;
-    this.porzs = res.porzs;
+    this.plans = res.plans;
     this.colors = res.colors;
+    this.porzs = res.porzs;
+    this.cheles = res.cheles;
+    this.assessments = res.assessments;
+    this.rajs = res.rajs;
   })
 
  }
@@ -81,6 +90,12 @@ export class FarshboomBankComponent implements OnInit {
   this.userParams.brandId = null;
   this.userParams.weight = null;
   this.userParams.length = null;
+  this.userParams.chele = null;
+  this.userParams.assessment = null;
+  this.userParams.raj = null;
+  this.userParams.plan = null;
+  this.userParams.fromPrice = null;
+  this.userParams.toPrice = null;
   this.loadGoods();
 }
 

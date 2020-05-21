@@ -26,7 +26,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   radioModel: string = 'Month';
 
   myInterval: number | false = 6000;
-
   activeSlideIndex: number = 0;
   noWrapSlides: boolean = false;
 
@@ -67,10 +66,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.pieChartLabels = this.brandsDto.map(woak => woak.brandName);
           this.pieChartData = this.brandsDto.map(woak => woak.brand);
 
-          this.mainChartLabels = this.projects.map(woak => woak.projectName);
-          this.mainChartDatas = [{data: this.projects.map(woak => woak.header), label: 'فرش بوم'}];
+          this.lineChartLabels = this.projects.map(woak => woak.projectName);
+          this.lineChartData = [{data: this.projects.map(woak => woak.header), label: 'فرش بوم'}];
 
-
+          this.lineChartLabels2 = this.projects.map(woak => woak.projectName);
+          this.lineChartData2 = [{data: this.projects.map(woak => woak.header), label: 'فرش بوم'}];
         });
       }, error => {console.log(error)}, () => {
       }
@@ -95,8 +95,72 @@ showNavigationIndicators = false;
 
 }
 
-public mainChartDatas: Array<any> = [];
-public mainChartLabels: Array<any> = [];
+public lineChartData: Array<any> = [
+  {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+];
+public lineChartLabels: Array<any> = [];
+public lineChartData2: Array<any> = [
+  {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+];
+public lineChartLabels2: Array<any> = [];
+public lineChartOptions: any = {
+  animation: false,
+  responsive: true
+};
+public lineChartColours: Array<any> = [
+  { // grey
+    backgroundColor: 'rgba(148,159,177,0.2)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+  { // dark grey
+    backgroundColor: 'rgba(77,83,96,0.2)',
+    borderColor: 'rgba(77,83,96,1)',
+    pointBackgroundColor: 'rgba(77,83,96,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(77,83,96,1)'
+  },
+  { // grey
+    backgroundColor: 'rgba(148,159,177,0.2)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  }
+];
+public lineChartColours2: Array<any> = [
+  { // grey
+    backgroundColor: 'rgb(63, 191, 191)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  },
+  { // dark grey
+    backgroundColor: 'rgb(63, 191, 191)',
+    borderColor: 'rgba(77,83,96,1)',
+    pointBackgroundColor: 'rgba(77,83,96,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(77,83,96,1)'
+  },
+  { // grey
+    backgroundColor: 'rgb(63, 191, 191)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  }
+];
+public lineChartLegend = true;
+public lineChartType = 'line';
 
 public DataOptions: any = {
   tooltips: {
@@ -145,170 +209,9 @@ public DataOptions: any = {
     this.myInterval = 0;
     this.noWrapSlides = true;
     this.myInterval = false;
+
   }
 
-  // lineChart1
-  public lineChart1Data: Array<any> = [
-    {
-      data: [65, 59, 84, 84, 51, 55, 40],
-      label: 'Series A'
-    }
-  ];
-  public lineChart1Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChart1Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
-        },
-        ticks: {
-          fontSize: 2,
-          fontColor: 'transparent',
-        }
-
-      }],
-      yAxes: [{
-        display: false,
-        ticks: {
-          display: false,
-          min: 40 - 5,
-          max: 84 + 5,
-        }
-      }],
-    },
-    elements: {
-      line: {
-        borderWidth: 1
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart1Colours: Array<any> = [
-    {
-      backgroundColor: getStyle('--primary'),
-      borderColor: 'rgba(255,255,255,.55)'
-    }
-  ];
-  public lineChart1Legend = false;
-  public lineChart1Type = 'line';
-
-  // lineChart2
-  public lineChart2Data: Array<any> = [
-    {
-      data: [1, 18, 9, 17, 34, 22, 11],
-      label: 'Series A'
-    }
-  ];
-  public lineChart2Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChart2Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent'
-        },
-        ticks: {
-          fontSize: 2,
-          fontColor: 'transparent',
-        }
-
-      }],
-      yAxes: [{
-        display: false,
-        ticks: {
-          display: false,
-          min: 1 - 5,
-          max: 34 + 5,
-        }
-      }],
-    },
-    elements: {
-      line: {
-        tension: 0.00001,
-        borderWidth: 1
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart2Colours: Array<any> = [
-    { // grey
-      backgroundColor: getStyle('--info'),
-      borderColor: 'rgba(255,255,255,.55)'
-    }
-  ];
-  public lineChart2Legend = false;
-  public lineChart2Type = 'line';
-
-
-  // lineChart3
-  public lineChart3Data: Array<any> = [
-    {
-      data: [78, 81, 80, 45, 34, 12, 40],
-      label: 'Series A'
-    }
-  ];
-  public lineChart3Labels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChart3Options: any = {
-    tooltips: {
-      enabled: false,
-      custom: CustomTooltips
-    },
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [{
-        display: false
-      }],
-      yAxes: [{
-        display: false
-      }]
-    },
-    elements: {
-      line: {
-        borderWidth: 2
-      },
-      point: {
-        radius: 0,
-        hitRadius: 10,
-        hoverRadius: 4,
-      },
-    },
-    legend: {
-      display: false
-    }
-  };
-  public lineChart3Colours: Array<any> = [
-    {
-      backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
-    }
-  ];
-  public lineChart3Legend = false;
-  public lineChart3Type = 'line';
 
 
   // barChart1

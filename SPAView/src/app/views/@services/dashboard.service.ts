@@ -63,6 +63,24 @@ export class DashboardService {
       if(userParams.weight != null){
         params = params.append('weight', userParams.weight);
       }
+      if(userParams.cheleId != null){
+        params = params.append('cheleId', userParams.cheleId);
+      }
+      if(userParams.rajId != null){
+        params = params.append('rajId', userParams.rajId);
+      }
+      if(userParams.planId != null){
+        params = params.append('planId', userParams.planId);
+      }
+      if(userParams.assessmentId != null){
+        params = params.append('assessmentId', userParams.assessmentId);
+      }
+      if(userParams.fromPrice != null){
+        params = params.append('fromPrice', userParams.fromPrice);
+      }
+      if(userParams.toPrice != null){
+        params = params.append('toPrice', userParams.toPrice);
+      }
     }
     return this.http.get<Good[]>(this.baseUrl + "/getAllGoods", { observe: 'response', params})
     .pipe(

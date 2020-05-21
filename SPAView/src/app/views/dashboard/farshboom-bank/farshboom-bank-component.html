@@ -56,25 +56,64 @@
                 <div class="row">
                   <div class="form-group px-4">
                     <label for="userId">رنگ :</label>
-                       <select [(ngModel)]="userParams.colorId" class="form-control" name="userId">
+                       <select [(ngModel)]="userParams.colorId" class="form-control" name="colorId">
                         <option *ngFor="let color of colors" [ngValue]="color.id" class="form-control col-sm-4">
                           {{ color.title }}</option>
                       </select>
                   </div>
                   <div class="form-group px-4">
+                    <label for="userId">چله :</label>
+                       <select [(ngModel)]="userParams.cheleId" class="form-control" name="cheleId">
+                        <option *ngFor="let color of colors" [ngValue]="color.id" class="form-control col-sm-4">
+                          {{ color.title }}</option>
+                      </select>
+                  </div>
+                  <div class="form-group px-4">
+                    <label for="userId">نقشه :</label>
+                       <select [(ngModel)]="userParams.planId" class="form-control" name="planId">
+                        <option *ngFor="let plan of plans" [ngValue]="plan.id" class="form-control col-sm-4">
+                          {{ plan.title }}</option>
+                      </select>
+                  </div>
+                  <div class="form-group px-4">
+                    <label for="userId">رج شمار :</label>
+                       <select [(ngModel)]="userParams.rajId" class="form-control" name="rajId">
+                        <option *ngFor="let raj of rajs" [ngValue]="raj.id" class="form-control col-sm-4">
+                          {{ raj.title }}</option>
+                      </select>
+                  </div>
+                  <div class="form-group px-4">
+                    <label for="userId">وضعیت :</label>
+                       <select [(ngModel)]="userParams.assessmentId" class="form-control" name="assessmentId">
+                        <option *ngFor="let assessment of assessments" [ngValue]="assessment.id" class="form-control col-sm-4">
+                          {{ assessment.title }}</option>
+                      </select>
+                  </div>
+                </div>
+                <br/><br/><br/>
+                <div class="row">
+                  <div class="form-group px-2">
                     <label for="length">طول :</label>
                        <input type="text" [(ngModel)]="userParams.length" class="form-control" name="length">
                   </div>
-                  <div class="form-group px-4">
+                  <div class="form-group px-2">
                     <label for="height"> عرض :</label>
                        <input type="text" [(ngModel)]="userParams.height" class="form-control" name="height">
                   </div>
-                  <div class="form-group px-4">
+                  <div class="form-group px-2">
+                    <label for="length">قیمت از :</label>
+                       <input type="text" [(ngModel)]="userParams.fromPrice" class="form-control" name="length">
+                  </div>
+                  <div class="form-group px-2">
+                    <label for="height"> تا :</label>
+                       <input type="number" [(ngModel)]="userParams.toPrice" class="form-control" name="height">
+                  </div>
+                  <div class="form-group px-3">
                     <button type="submit" class="btn btn-primary" style="margin-left:10px">جستجو</button>
                     <button type="button" class="btn btn-info" (click)="resetFilters()" style="margin-left:10px">
                         بازیابی
                     </button>
-                  </div>
+                </div>
                 </div>
               </form>
         </div>

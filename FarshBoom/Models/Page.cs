@@ -2,7 +2,7 @@ namespace FarshBoom.Models
 {
     public class Page : BaseEntity
     {
-        public int MenuId { get; set; }
+        
     }
     public class PageContent : BaseEntity
     {

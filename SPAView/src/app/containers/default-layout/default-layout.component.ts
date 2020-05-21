@@ -4,7 +4,7 @@ import { AuthService } from '../../views/@services/auth.service';
 import { Router } from '@angular/router';
 import { INavData } from '@coreui/angular';
 import { CollapseDirective } from 'ngx-bootstrap/collapse';
-import { Page } from '../../views/@models/Page';
+import { Page, PageContent } from '../../views/@models/Page';
 import { PageService } from '../../views/@services/page.service';
 
 @Component({
@@ -45,28 +45,28 @@ export class DefaultLayoutComponent implements OnInit {
   }
 
   pages: Page[];
+  pageContents1: PageContent[];
+  pageContents2: PageContent[];
+  pageContents3: PageContent[];
+  pageContents4: PageContent[];
+  pageContents5: PageContent[];
+  pageContents6: PageContent[];
+  pageContents7: PageContent[];
 
-  menu1: Page[];
-  menu2: Page[];
-  menu3: Page[];
-  menu4: Page[];
-  menu5: Page[];
-  menu6: Page[];
-  menu7: Page[];
   ngOnInit(): void {
     this.pageService.getPages().subscribe((_pages: Page[]) => {
-      this.menu1 = _pages.filter(woak => woak.menuId == 1);
-      this.menu2 = _pages.filter(woak => woak.menuId == 2);
-      this.menu3 = _pages.filter(woak => woak.menuId == 3);
-      this.menu4 = _pages.filter(woak => woak.menuId == 4);
-      this.menu5 = _pages.filter(woak => woak.menuId == 5);
-      this.menu6 = _pages.filter(woak => woak.menuId == 6);
-      this.menu7 = _pages.filter(woak => woak.menuId == 7);
+      this.pages = _pages;
     });
-    // this.pageService.getPageContents().subscribe((_pageContents: PageContent[]) => {
-    //   this.pageContents = _pageContents;
-    //   console.log(this.pageContents);
-    // })
+    this.pageService.getPageContents().subscribe((_pageContents: PageContent[]) => {
+      this.pageContents1 = _pageContents.filter(woak => woak.pageId == 10);
+      this.pageContents2 = _pageContents.filter(woak => woak.pageId == 11);
+      this.pageContents3 = _pageContents.filter(woak => woak.pageId == 12);
+      this.pageContents4 = _pageContents.filter(woak => woak.pageId == 13);
+      this.pageContents5 = _pageContents.filter(woak => woak.pageId == 14);
+      this.pageContents6 = _pageContents.filter(woak => woak.pageId == 15);
+      this.pageContents7 = _pageContents.filter(woak => woak.pageId == 16);
+
+    })
   }
 
   @ViewChild(CollapseDirective, { read: ElementRef, static: false }) collapse !: CollapseDirective;

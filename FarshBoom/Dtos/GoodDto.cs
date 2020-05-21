@@ -37,6 +37,7 @@ namespace FarshBoom.Dtos
         public bool Slider { get; set; }
         public string ImageUrl { get; set; }
         public DateTime AddedDate { get; set; }
+        public double SalePrice { get; set; }
     }
     public class GoodInsertDto
     {
